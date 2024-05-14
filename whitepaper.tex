@@ -8,7 +8,6 @@
 \usepackage{amsmath, amssymb} % For mathematical symbols and equations
 \usepackage{hyperref} % For hyperlinks
 \usepackage{ragged2e} % Enhanced Justification and hyphenation
-\usepackage{background} % Use for the DRAFT watermark
 \usepackage[backend=biber, style=apa]{biblatex} % For the bibliography
 \usepackage{geometry} % To set the margins
 \usepackage{tocloft} % Customization of the Table of Contents
@@ -58,14 +57,13 @@
 
 % ********** REMOVE IN FINISHED VERSION **********
 % Write DRAFT angled over every page
-\backgroundsetup{
-  scale=1,
-  color=gray,
-  opacity=0.4,
-  angle=45,
-  position=current page.center,
-  contents={\tikz\node[opacity=0.3, scale=15]{DRAFT};}
-} 
+\AddToHook{shipout/background}{%
+  \put(0,0){%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[opacity=0.3, scale=15, rotate=45] at (current page.center) {DRAFT};
+    \end{tikzpicture}%
+  }
+}
 
 % ========== BEGIN DOCUMENT ==========
 
@@ -115,7 +113,7 @@ W3.io introduces a protocol aimed at bridging the gap between blockchain's on-ch
 \section{Introduction}
 Blockchain tech is a revolution in how we handle digital transactions and build decentralized apps, promising security and transparency. But it's not a magic bullet—it's got its limits. Things like slow transaction speeds, high costs, and limited on-chain power mean it can't do everything on its own, so we take much of the work off-chain. In the past few years, many decentralized projects launched that can replace small parts of IT offers with more efficient decentralized options. 
 
-There is a proliferation in individual chains. Some projects strive to be cross chain, others launch their own special purpose chains. It's become difficult to keep up, and the value web3 off-chain compute projects have remains hidden and difficult to access. Web3 is both difficult and vast. 
+There is a proliferation in individual chains. Some projects strive to be cross chain, others launch their own special purpose chains. It's become difficult to keep up, and the immense value web3 off-chain compute projects bring remains hidden and difficult to access. Web3 is both difficult and vast. 
 
 W3.io emerges as a pioneering solution in this landscape, designed to bridge the gap between the on-chain capabilities of blockchain technologies and the computational power of off-chain systems. This whitepaper introduces the W3.io protocol, a decentralized framework that facilitates seamless orchestration of on-chain and off-chain compute tasks. By leveraging a network of decentralized nodes, W3.io enables businesses to execute complex, integrated workflows with enhanced efficiency and flexibility.
 
@@ -291,7 +289,7 @@ Nodes are the operational units within the W3.io network, each contributing esse
   \centering
   \includegraphics[width=0.5\textwidth]{images/Node.png}
   \caption{Node Architecture}
-  \label{fig:network}
+  \label{fig:node architecture}
 \end{figure}
 
 Each node within the network operates based on a uniform core code, which functions as an event-driven finite state machine. This design is optimized to minimize the computational overhead not directly related to customer recipes, thereby enhancing the overall efficiency of the network.
