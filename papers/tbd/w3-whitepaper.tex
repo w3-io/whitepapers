@@ -18,7 +18,9 @@ Verifiable multi-step automation would extend blockchain guarantees beyond singl
 
 \section{Introduction}
 
-% To be written
+Blockchain systems establish cryptographic verification for single transaction operations, enabling trustless execution of financial transfers and smart contracts. While this works well for onchain computation, verification guarantees are lost when automation requires offchain execution. Multi-step workflows that interact with external APIs, process confidential compute, or perform nondeterministic operations cannot maintain end-to-end verifiability under current blockchain architectures. Developers face a binary choice: constrain all computation to onchain within gas limits and block times, or move computation offchain and abandon cryptographic verification. This forces workflows to trade functionality for verification or verification for functionality. Existing oracle networks provide partial, domain-specific feeds, but no general mechanism exists for verifiable multi-step automation across heterogeneous trust environments.
+
+What is needed is a verification system that adapts to each computation's trust properties rather than imposing uniform assumptions. Cryptographic proofs verify blockchain operations, hardware attestations protect confidential execution, and stake-backed attestations cover external interactions, composing into unified workflow attestations. We propose a heterogeneous verification system in which validators attest to each workflow step using the appropriate mechanism and stake against their attestations; fraudulent attestations can be challenged via onchain fraud proofs. The system maintains verifiability provided honest validators control sufficient stake to make fraud economically irrational.
 
 \section*{References}
 
