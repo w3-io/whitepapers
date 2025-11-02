@@ -4,6 +4,44 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 
+% ==============================================================================
+% STYLE GUIDELINES FOR THIS WHITEPAPER
+% ==============================================================================
+% Model: Bitcoin whitepaper (Satoshi Nakamoto, 2008)
+%   - Length: ~9 pages total
+%   - Tone: Understated confidence, no hype, matter-of-fact
+%   - Structure: Problem → Solution → How it works → Math/Security → Conclusion
+%   - Every sentence must earn its place
+%
+% FRAMING:
+%   - Abstract: Technical (for blockchain researchers)
+%   - Introduction: Society-level problems (for broader audience)
+%     * Start with what people/businesses WANT but CAN'T HAVE due to trust
+%     * Not "developers face constraints" but "businesses lose money to fraud"
+%     * Bitcoin test: Would a VC/regulator/executive understand para 1?
+%   - Technical sections: Precise but accessible
+%
+% TERMINOLOGY (use consistently):
+%   - onchain / offchain (no hyphens)
+%   - attestation (not "statement" or "proof" unless cryptographic)
+%   - stake against / stake-backed (not "economically back")
+%   - multi-step (not "temporal" or "multi-phase")
+%   - validators (not "nodes" unless specifically P2P network context)
+%   - fraud proofs (not "challenge mechanism")
+%
+% TONE RULES:
+%   - "We propose..." not "We revolutionize..."
+%   - State problems plainly: "X suffers from Y"
+%   - No: "Imagine if...", "In the future...", "paradigm shift"
+%   - Admit limitations honestly (like Bitcoin's privacy section)
+%
+% SATOSHI TEST:
+%   - Would this sentence appear in the Bitcoin whitepaper?
+%   - If too breathless/marketing-y, cut or rephrase
+%   - If too verbose, tighten
+%   - If academic filler ("various", "multiple", "different"), delete
+% ==============================================================================
+
 \title{Heterogeneous Verification for Multi-Step Decentralized Workflows}
 \author{Cory Gabrielsen (cory.eth)}
 \date{\today}
