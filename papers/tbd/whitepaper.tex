@@ -1,5 +1,5 @@
-\documentclass[10pt,twocolumn]{article}
-\usepackage[margin=0.75in]{geometry}
+\documentclass[10pt]{article}
+\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -66,7 +66,7 @@ We define a workflow as a sequence of operations, where each operation produces 
 
 The problem is that operations have heterogeneous verification requirements that no single institution can satisfy. Blockchain operations can be verified cryptographically through replication. Confidential operations—trading strategies, medical diagnoses, proprietary business logic—require sealed execution environments where verification depends on hardware attestations rather than observability. External operations depend on institutions: courts must confirm judgments, hospitals must verify treatments, registries must attest to transfers, exchanges must confirm settlements. A common solution is designating a trusted intermediary to execute all operations and attest to results—an executor for wills, an exchange for trading, a platform for healthcare workflows. The problem with this solution is that these intermediaries are themselves institutions requiring trust. Executors misappropriate estates, exchanges steal deposits, healthcare platforms breach patient data. These institutions evolved over centuries specifically to handle custody, resolve disputes, and protect confidentiality, yet custody losses, contested estates, and data breaches remain unavoidable.
 
-We need verification that does not depend on trusting institutions. For blockchain operations, cryptographic proofs provide this. For confidential operations, hardware attestations offer cryptographic guarantees independent of operator trust. For external operations, economic security through staked attestations creates verifiability through incentives rather than institutional authority. The challenge is composing these heterogeneous mechanisms into unified workflow verification.
+We need verification that does not depend on trusting institutions. For blockchain operations, cryptographic proofs provide this—any party can verify without trust. For confidential operations, hardware attestations offer cryptographic guarantees independent of operator trust. For external operations, economic security through staked attestations creates verifiability through incentives rather than institutional authority. The challenge is composing these heterogeneous mechanisms into unified workflow verification.
 
 \section{Attestation Chain}
 
