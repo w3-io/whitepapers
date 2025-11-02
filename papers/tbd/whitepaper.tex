@@ -68,6 +68,10 @@ The problem is that operations have heterogeneous verification requirements that
 
 We need verification that does not depend on trusting institutions. For blockchain operations, cryptographic proofs provide this—any party can verify without trust. For confidential operations, hardware attestations offer cryptographic guarantees independent of operator trust. For external operations, economic security through staked attestations creates verifiability through incentives rather than institutional authority. The challenge is composing these heterogeneous mechanisms into unified workflow verification.
 
+\section{Attestation Chain}
+
+The solution we propose begins with an attestation chain. An attestation is a validator's cryptographic signature over an operation's result and the hash of the previous attestation. The attestation proves that the operation occurred and that the validator verified it. By including the previous attestation's hash, each attestation proves not only its own operation but confirms all previous operations in the chain.
+
 \section*{References}
 
 \begin{enumerate}
