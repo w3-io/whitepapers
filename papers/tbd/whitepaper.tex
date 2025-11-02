@@ -7,41 +7,33 @@
 \usepackage[T1]{fontenc}
 
 % ==============================================================================
-% STYLE GUIDELINES FOR THIS WHITEPAPER
+% STYLE GUIDELINES - Model: Bitcoin whitepaper (Satoshi, 2008)
 % ==============================================================================
-% Model: Bitcoin whitepaper (Satoshi Nakamoto, 2008)
-%   - Length: ~9 pages total
-%   - Tone: Understated confidence, no hype, matter-of-fact
-%   - Structure: Problem → Solution → How it works → Math/Security → Conclusion
-%   - Every sentence must earn its place
+% STRUCTURE:
+%   - Abstract: Technical, 119 words exactly
+%   - Section 1: Concrete societal problems with emotional weight
+%     ("disputes regularly destroy families", "contested estates")
+%   - Section 2: Abstract technical definitions
+%   - Section 3+: Elegant primitives, build complexity gradually
+%   - Concrete → Abstract (not developer problems, human problems)
 %
-% FRAMING:
-%   - Abstract: Technical (for blockchain researchers)
-%   - Introduction: Society-level problems (for broader audience)
-%     * Start with what people/businesses WANT but CAN'T HAVE due to trust
-%     * Not "developers face constraints" but "businesses lose money to fraud"
-%     * Bitcoin test: Would a VC/regulator/executive understand para 1?
-%   - Technical sections: Precise but accessible
+% EDITING DISCIPLINE:
+%   - Every word must earn its place
+%   - Implication > explanation (cut "for X", "according to Y" qualifiers)
+%   - Trust reader (no over-explaining technical terms)
+%   - No hedging ("employs" not "may employ")
+%   - Back-references work ("provide this" not re-explaining)
+%   - Section lengths near Bitcoin's (Intro ~300w, Sec 2 ~300w, Sec 3 ~100w)
 %
-% TERMINOLOGY (use consistently):
-%   - onchain / offchain (no hyphens)
-%   - attestation (not "statement" or "proof" unless cryptographic)
-%   - stake against / stake-backed (not "economically back")
-%   - multi-step (not "temporal" or "multi-phase")
-%   - validators (not "nodes" unless specifically P2P network context)
-%   - fraud proofs (not "challenge mechanism")
+% TONE:
+%   - Understated confidence: "We propose" not "We revolutionize"
+%   - Plain problem statements: "X suffers from Y"
+%   - No: "Imagine if", "In the future", "paradigm shift"
+%   - Satoshi test: Would this sentence appear in Bitcoin whitepaper?
 %
-% TONE RULES:
-%   - "We propose..." not "We revolutionize..."
-%   - State problems plainly: "X suffers from Y"
-%   - No: "Imagine if...", "In the future...", "paradigm shift"
-%   - Admit limitations honestly (like Bitcoin's privacy section)
-%
-% SATOSHI TEST:
-%   - Would this sentence appear in the Bitcoin whitepaper?
-%   - If too breathless/marketing-y, cut or rephrase
-%   - If too verbose, tighten
-%   - If academic filler ("various", "multiple", "different"), delete
+% TERMINOLOGY:
+%   - onchain/offchain (no hyphens), attestation, stake-backed, multi-step
+%   - validators, fraud proofs, heterogeneous verification
 % ==============================================================================
 
 \title{Heterogeneous Verification for Multi-Step Decentralized Workflows}
