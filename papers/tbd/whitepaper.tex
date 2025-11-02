@@ -1,10 +1,16 @@
-\documentclass[10pt]{article}
-\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{newcent} % New Century Schoolbook font (matches Bitcoin whitepaper)
+\usepackage{mathptmx}     % Times-like serif for body text
+\usepackage{newcent}      % Century Schoolbook for headings
+\usepackage{courier}      % Monospaced for code/math
+\usepackage{sectsty}      % Apply Century Schoolbook to section headings
+\sectionfont{\fontfamily{pnc}\selectfont\bfseries}
 \usepackage[T1]{fontenc}
+\usepackage{setspace}
+\setstretch{1.1}          % Slightly expanded line spacing
 
 % ==============================================================================
 % STYLE GUIDELINES - Model: Bitcoin whitepaper (Satoshi, 2008)
