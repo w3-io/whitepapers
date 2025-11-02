@@ -1,22 +1,16 @@
-\documentclass[11pt,letterpaper]{article}
-\usepackage[margin=1in]{geometry}
+\documentclass[10pt]{article}
+\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{mathptmx}     % Times-like serif for body text
-\usepackage{newcent}      % Century Schoolbook for headings
-\usepackage{courier}      % Monospaced for code/math
-\usepackage{sectsty}      % Apply Century Schoolbook to section headings
-\sectionfont{\fontfamily{pnc}\selectfont\bfseries}
+\usepackage{newcent} % New Century Schoolbook font (matches Bitcoin whitepaper)
 \usepackage[T1]{fontenc}
-\usepackage{setspace}
-\setstretch{1.1}          % Slightly expanded line spacing
 
 % ==============================================================================
 % STYLE GUIDELINES - Model: Bitcoin whitepaper (Satoshi, 2008)
 % ==============================================================================
 % STRUCTURE:
-%   - Abstract: Technical, 119 words exactly
+%   - Abstract: Technical, ~120 words
 %   - Section 1: Concrete societal problems with emotional weight
 %     ("disputes regularly destroy families", "contested estates")
 %   - Section 2: Abstract technical definitions
@@ -56,21 +50,13 @@ Financial and confidential automation relies on trusted intermediaries, imposing
 
 \section{Introduction}
 
-Execution of agreements and coordination of complex operations have come to rely almost exclusively on trusted intermediaries to handle financial transactions, legal processes, and confidential data. While these intermediaries work well enough for simple cases, they suffer from the inherent vulnerabilities of the trust-based model. Executing a will requires verifying death records through vital statistics offices, coordinating beneficiaries through legal counsel, transferring property titles through county registries, and distributing assets through financial institutions—operations that courts and executors have coordinated for centuries, yet disputes regularly destroy families. Algorithmic trading requires balance verification through blockchain systems, strategy execution in confidential environments, and trade settlement through exchanges that routinely fail through hacks and bankruptcy. Healthcare workflows expose patient data to cloud providers, enterprise systems surrender control to vendors, and sensitive operations reveal private information to platforms. With these dependencies comes concentration of power. Organizations and individuals must accept vendor lock-in and platform rules, granting more access and control than they would otherwise. A certain percentage of custody losses, contested estates, data breaches, and censorship is accepted as unavoidable. These risks can be avoided through manual processes with in-person verification, but no mechanism exists for trustless execution at scale without centralized operators.
+Almost all financial, legal, and confidential operations rely on trusted intermediaries. While these intermediaries work well enough for simple cases, they suffer from the inherent vulnerabilities of the trust-based model. Executing a will requires verifying death records through vital statistics offices, coordinating beneficiaries through legal counsel, transferring property titles through county registries, and distributing assets through financial institutions—operations that courts and executors have coordinated for centuries, yet disputes regularly destroy families. Medical records expose patient data to cloud providers, proprietary calculations depend on vendors, and sensitive operations leak to platforms. Algorithmic trading requires balance verification through blockchain systems, strategy execution in confidential environments, and trade settlement through exchanges that routinely fail through hacks and bankruptcy. With these dependencies comes concentration of power. Organizations and individuals must accept vendor lock-in and platform rules. A certain percentage of custody losses, contested estates, data breaches, and censorship is accepted as unavoidable. These risks can be avoided through manual in-person verification, but no mechanism exists for trustless execution at scale without centralized operators.
 
-What is needed is a verification system based on cryptographic attestations instead of trust, allowing processes to execute across multiple steps and parties without centralized intermediaries. Workflows combining cryptographic proofs, hardware attestations, and stake-backed attestations would protect against custody risk while preserving confidentiality and verifiability. In this paper, we propose a heterogeneous verification system where validators attest to each workflow step using mechanisms appropriate to the computation and stake economic value against their attestations. Fraudulent attestations can be challenged through onchain fraud proofs. The system is secure as long as honest validators control sufficient stake to make fraud economically irrational.
+What is needed is a verification system based on cryptographic proof instead of trust, allowing processes to execute across multiple steps and parties without centralized intermediaries. We propose a system where validators verify each step and stake value backing their claims. Anyone can challenge fraudulent claims with proof. The system is secure as long as honest validators control enough stake to make fraud unprofitable.
 
-\section{Workflows}
+\section{Trust}
 
-We define a workflow as a sequence of operations, where each operation produces outputs that subsequent operations may depend on. Each operation employs different computational environments and verification mechanisms.
-
-The problem is that operations have heterogeneous verification requirements that no single institution can satisfy. Blockchain operations can be verified cryptographically through replication. Confidential operations—trading strategies, medical diagnoses, proprietary business logic—require sealed execution environments where verification depends on hardware attestations rather than observability. External operations depend on institutions: courts must confirm judgments, hospitals must verify treatments, registries must attest to transfers, exchanges must confirm settlements. A common solution is designating a trusted intermediary to execute all operations and attest to results—an executor for wills, an exchange for trading, a platform for healthcare workflows. The problem with this solution is that these intermediaries are themselves institutions requiring trust. Executors misappropriate estates, exchanges steal deposits, healthcare platforms breach patient data. These institutions evolved over centuries specifically to handle custody, resolve disputes, and protect confidentiality, yet custody losses, contested estates, and data breaches remain unavoidable.
-
-We need verification that does not depend on trusting institutions. For blockchain operations, cryptographic proofs provide this—any party can verify without trust. For confidential operations, hardware attestations offer cryptographic guarantees independent of operator trust. For external operations, economic security through staked attestations creates verifiability through incentives rather than institutional authority. The challenge is composing these heterogeneous mechanisms into unified workflow verification.
-
-\section{Attestation Chain}
-
-The solution we propose begins with an attestation chain. An attestation is a validator's cryptographic signature over an operation's result and the hash of the previous attestation. The attestation proves that the operation occurred and that the validator verified it. By including the previous attestation's hash, each attestation proves not only its own operation but confirms all previous operations in the chain.
+No single mechanism can verify all these operations. Blockchain transactions are publicly verifiable through cryptographic proofs. Confidential computing uses sealed hardware to hide computation while proving it executed correctly. Courts, governments, and banks wield authority that cannot be verified—only trusted or feared.
 
 \section*{References}
 
