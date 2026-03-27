@@ -1,0 +1,23 @@
+title: "W3.io Protocol"
+subtitle: "Verifiable Workflow Execution with On-Chain Settlement"
+author:
+  - Audie Sheridan
+  - Ben Murray
+  - David Post
+date: 2026
+documentclass: article
+geometry: margin=1in
+fontsize: 11pt
+toc: true
+toc-depth: 3
+numbersections: true
+colorlinks: true
+linkcolor: blue
+urlcolor: blue
+header-includes:
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[L]{W3.io Protocol}
+  - \fancyhead[R]{\thepage}
+  - \linespread{1.3}
+  - \setlength{\parskip}{0.5em}

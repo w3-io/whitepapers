@@ -1,0 +1,9 @@
+# Abstract
+
+W3.io is a workflow execution protocol that connects fragmented Web3 infrastructure into verifiable, multi-step workflows that power real-world applications. Developers compose workflows from modular actions — blockchain operations across Ethereum, Solana, and Bitcoin, data queries, AI inference, payments, compliance checks, and dozens of other ecosystem partner capabilities — using a declarative YAML syntax compatible with GitHub Actions. The protocol transforms isolated infrastructure components into programmable, composable pipelines where each step's execution is independently verifiable.
+
+A distributed network of validators executes each workflow step, reaches Byzantine fault-tolerant consensus on the result, and produces cryptographic settlement receipts. These receipts are accumulated into epoch commitments anchored to an EVM L1, enabling any party to verify that a specific workflow executed correctly without re-executing it or trusting the executor.
+
+The W3 token gates participation in the network. Ecosystem partners post collateral to operate subnets, solution builders stake to deploy applications, sales teams stake to earn rewards for driving adoption and end-user conversions, and validators bond tokens to secure consensus. Revenue from workflow execution flows in stablecoins, separating the utility token from the payment medium. Rewards are tied to active contribution — execution, verification, building, and adoption — not passive holding. The token does not represent equity, debt, or a claim on protocol revenues.
+
+This paper describes the architecture, workflow execution model, consensus mechanism, settlement layer, namespace model, validator infrastructure, token utility, and security properties of the W3.io protocol. The protocol is implemented in Rust, open-source, and deployed on testnet with over 200,000 workflow executions per day.
