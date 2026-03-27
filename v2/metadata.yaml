@@ -1,10 +1,3 @@
-title: "W3.io Protocol"
-subtitle: "Verifiable Workflow Execution with On-Chain Settlement"
-author:
-  - Audie Sheridan
-  - Ben Murray
-  - David Post
-date: 2026
 documentclass: article
 geometry: margin=1in
 fontsize: 11pt
@@ -17,6 +10,7 @@ urlcolor: blue
 header-includes:
   - \usepackage{fancyhdr}
   - \usepackage{draftwatermark}
+  - \usepackage{graphicx}
   - \pagestyle{fancy}
   - \fancyhead[L]{W3.io Protocol}
   - \fancyhead[R]{\thepage}
@@ -25,3 +19,5 @@ header-includes:
   - \SetWatermarkText{DRAFT}
   - \SetWatermarkScale{1.5}
   - \SetWatermarkColor[gray]{0.9}
+include-before:
+  - \input{titlepage.tex}
