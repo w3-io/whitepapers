@@ -6,6 +6,8 @@ cd "$(dirname "$0")"
 echo "Building W3.io whitepaper..."
 pandoc \
   --metadata-file=metadata.yaml \
+  --bibliography=references.bib \
+  --citeproc \
   chapters/*.md \
   --output=output/w3-whitepaper.pdf \
   --pdf-engine=tectonic \

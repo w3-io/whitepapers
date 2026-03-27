@@ -89,7 +89,7 @@ The Ribs: Per-Run Hashchains
   Workflow C -- block 1 -- block 2 -- block 3 -- receipt
 ```
 
-The **spine** is the L1 epoch chain. A sequential, immutable record of cumulative sparse merkle tree roots on-chain. Each epoch's root covers all workflow receipts across all namespaces ever settled, not just the current epoch. The chain of roots captures the full evolution of world state.
+The **spine** is the L1 epoch chain. A sequential, immutable record of cumulative sparse merkle tree roots [@jellyfish2021] on-chain. Each epoch's root covers all workflow receipts across all namespaces ever settled, not just the current epoch. The chain of roots captures the full evolution of world state.
 
 The **ribs** are individual workflow execution traces. Per-run hashchains of consensus blocks that branch off the spine. Each step in a workflow produces a block containing the step's inputs, outputs, executor identity, and the previous block's hash. When the workflow completes, the final block hash and metadata are compressed into a receipt. That receipt is inserted into the namespace's sparse merkle tree, which feeds into the global tree, which produces the epoch root committed to the spine.
 

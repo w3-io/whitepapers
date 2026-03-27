@@ -2,7 +2,7 @@
 
 ## The Integration Gap
 
-Decentralized infrastructure has matured rapidly. Individual services now exist for payments, data, compute, storage, identity, oracles, and security. Multiple blockchains provide settlement for different use cases. The building blocks are there.
+Decentralized infrastructure has matured rapidly. Individual services now exist for payments, data, compute, storage, identity, oracles, and security. Multiple blockchains provide settlement for different use cases [@nakamoto2008bitcoin; @buterin2014ethereum; @yakovenko2018solana]. The building blocks are there.
 
 What doesn't exist is a way to connect these services into verifiable end-to-end workflows. A business process that requires a payment, a compliance check, a data query, and an on-chain settlement today requires custom integration code for each service, separate authentication and billing relationships with each provider, and no unified way to verify that the entire process executed correctly.
 
@@ -47,4 +47,4 @@ The remainder of this paper describes the W3.io protocol in detail:
 - **Governance** (Section 13): how the protocol evolves and the decentralization roadmap
 - **Security** (Section 14): the threat model, BFT assumptions, and known limitations
 
-W3.io's protocol is implemented in Rust, open-source, and deployed on testnet. This paper describes the system as designed and implemented, not as aspirational. Where features are planned but not yet deployed, this is stated explicitly.
+W3.io's protocol is implemented in Rust [@matsakis2014rust], open-source, and deployed on testnet. This paper describes the system as designed and implemented, not as aspirational. Where features are planned but not yet deployed, this is stated explicitly.
