@@ -14,7 +14,7 @@ This gap has three dimensions.
 
 **Business friction.** Beyond the technical challenges, using multiple decentralized providers means separate legal agreements, separate payment arrangements, and separate vendor relationships. Discovery is also a problem. Hundreds of decentralized projects exist, but their capabilities and integration surfaces are poorly documented and difficult to evaluate without deep technical engagement.
 
-These challenges are not hypothetical. They are the reason most production Web3 applications still run their off-chain logic on AWS, even when the on-chain components are fully decentralized.
+These challenges are not hypothetical. They are the reason most production Web3 applications still run their off-chain logic on AWS, even when the on-chain components are fully decentralized. A DeFi protocol settles on Ethereum but runs its liquidation bots on EC2. A payments company uses Circle's on-chain USDC but orchestrates compliance checks through a Lambda function. The blockchain provides the settlement guarantee. A centralized server provides everything in between. W3.io replaces that centralized server with a protocol.
 
 ## W3.io's Approach
 

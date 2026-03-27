@@ -79,6 +79,63 @@ jobs:
 
 Every step in this workflow executes on a different validator, selected by consensus. The compliance check result, the database write, and the alert are all attested by the committee and included in the settlement receipt. An auditor can later prove that the compliance check happened, what it returned, and when, by verifying the receipt against the on-chain epoch root.
 
+A second example shows composability across four partners where money actually moves. A treasury application must disburse USDC to a recipient, but only after verifying the stablecoin peg is stable, the recipient passes sanctions screening, and every decision is logged to an immutable audit trail.
+
+```yaml
+name: Compliant stablecoin disbursement
+on:
+  workflow_dispatch:
+    inputs:
+      recipient_address:
+        description: 'Recipient wallet address'
+        required: true
+      amount_usd:
+        description: 'Disbursement amount in USD'
+        required: true
+jobs:
+  disburse:
+    steps:
+      - name: Check peg stability
+        id: peg
+        uses: w3-io/w3-pyth-action@v1
+        with:
+          feed: USDC/USD
+          max_deviation_bps: 10
+
+      - name: Screen recipient
+        id: screening
+        if: steps.peg.outputs.within_band == 'true'
+        uses: w3-io/w3-chainalysis-action@v1
+        with:
+          address: ${{ inputs.recipient_address }}
+
+      - name: Log decision to audit trail
+        if: steps.screening.outputs.risk != 'sanctions'
+        uses: w3-io/w3-sxt-action@v1
+        with:
+          command: execute
+          sql: >
+            INSERT INTO disbursement_log
+            (recipient, amount_usd, risk_level, peg_rate)
+            VALUES ('${{ inputs.recipient_address }}',
+                    ${{ inputs.amount_usd }},
+                    '${{ steps.screening.outputs.risk }}',
+                    ${{ steps.peg.outputs.rate }})
+
+      - name: Execute disbursement
+        if: steps.screening.outputs.risk != 'sanctions'
+        uses: w3-io/w3-circle-action@v1
+        with:
+          action: transfer
+          destination: ${{ inputs.recipient_address }}
+          amount: ${{ inputs.amount_usd }}
+          currency: USDC
+```
+
+Before a single dollar moves, the workflow confirms the USDC peg is within 10 basis points of par (Pyth), verifies the recipient is not sanctions-listed (Chainalysis), writes the decision to a tamper-proof audit log (Space and Time), and only then executes the transfer (Circle). If any step fails, nothing moves. The settlement receipt proves not just that the payment happened, but that the peg check and sanctions screen happened first, in that order, with those results.
+
+Each partner made this possible by contributing one ingredient. Space and Time did not need to know about Circle. Pyth did not need to know about Chainalysis. Each partner published their capability once. The recipe assembles them. When a fifth partner joins the ecosystem, every existing recipe can add a step without any of the other partners changing anything.
+
 A workflow definition includes:
 
 - **Name**: human-readable identifier for the workflow

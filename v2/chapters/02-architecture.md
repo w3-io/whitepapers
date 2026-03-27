@@ -2,7 +2,7 @@
 
 ## Ingredients, Recipes, and Solutions
 
-W3.io's ecosystem is organized around three tiers of composability.
+W3.io's ecosystem is organized around three tiers of composability. The terminology is borrowed from the kitchen, and the analogy is precise. A chef does not grow wheat or raise cattle. A chef combines high-quality ingredients into recipes that produce something none of the ingredients could deliver alone. The chef's skill is in the composition: knowing which ingredients work together, in what order, under what conditions. W3.io applies this model to decentralized infrastructure. Partners provide the ingredients. Developers write the recipes. Businesses serve the resulting solutions to their customers.
 
 **Ingredients** are capabilities provided by individual ecosystem partners. Each partner exposes their capabilities as modular, reusable components within the W3.io ecosystem. Space and Time provides data queries. Circle and Stripe handle payments. Hyperbolic offers AI inference. Chainalysis handles compliance screening. Pyth delivers price feeds. An ingredient is a self-contained unit of functionality that can be invoked as part of a larger process.
 
@@ -70,6 +70,16 @@ W3.io separates data responsibilities across three layers, each optimized for it
 **Layer 2: Protocol Nodes.** Validators store everything. Full workflow execution traces, receipt storage, epoch accumulation, P2P consensus messages, and a write-ahead log for crash recovery. This layer is the evidence behind the Layer 1 commitments and serves as the data availability layer for proof generation.
 
 **Layer 3: Index and Query.** An indexer watches Layer 1 events and reconstructs queryable views: workflow runs by namespace, by epoch, by action type. The CLI provides developer access to settlement status and proof export. The API layer supports MCP (Model Context Protocol) for AI agent integration.
+
+## AI Agent Integration
+
+W3.io is designed for a world where AI agents are first-class participants in financial workflows. The protocol exposes its capabilities through an MCP (Model Context Protocol) server, the emerging standard for connecting AI assistants to external tools and data.
+
+The W3 MCP server gives any MCP-compatible AI agent the ability to compile and validate workflows, deploy workflows to the network, query workflow execution status, inspect settlement receipts and epoch data, and interact with the Solana DEX indexer and other data services. An AI agent using Claude, GPT, or any MCP-compatible model can discover W3.io's capabilities programmatically, invoke them through structured tool calls, and compose multi-step financial operations without custom integration code.
+
+This is not a future feature. The W3 MCP server is published, operational, and registered in the MCP ecosystem. AI agents can deploy and trigger W3.io workflows today using the same natural language interface they use for any other MCP-connected tool.
+
+The integration works in both directions. AI agents can orchestrate W3.io workflows (deploying recipes, triggering executions, reading results). And W3.io workflows can invoke AI capabilities as steps (via the Hyperbolic action for inference, or any AI provider that publishes an action). The protocol does not privilege human users over programmatic ones. A workflow triggered by an AI agent goes through the same consensus, attestation, and settlement pipeline as one triggered by a human.
 
 ## The Spine and Ribs
 
