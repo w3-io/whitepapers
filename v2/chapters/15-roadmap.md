@@ -2,50 +2,45 @@
 
 ## Current State
 
-W3.io's protocol is implemented in Rust, open-source, and deployed on testnet. The testnet processes over 200,000 workflow executions per day with a multi-node validator cluster. The following components are built and operational:
+W3.io's protocol is implemented in Rust, open-source, and deployed on testnet. The testnet processes over 200,000 workflow executions per day across a multi-node validator network. The protocol includes:
 
-- Workflow execution runtime with GHA-compatible YAML parser
-- BOSCO BFT consensus engine (2,720 lines, 4-state machine)
-- P2P networking via libp2p with gossipsub and direct messaging
+- Workflow execution runtime with GHA-compatible YAML compiler
+- BFT consensus engine with 4-state machine for per-step agreement
+- P2P networking via libp2p with gossipsub and direct committee messaging
+- SSZ wire format for all protocol messages
 - Native blockchain actions for Ethereum, Solana, and Bitcoin
 - Ecosystem partner actions (Space and Time, Chainalysis, Pyth, Circle, Stripe, Hyperbolic, Redis, email)
 - Backend trait with Docker execution, timeout enforcement, and signal escalation
-- SSZ wire format for all P2P messages
-- BLS12-381 signing with PopVerifiedKey type-state enforcement
-- Sparse merkle tree library (JMT + keccak256)
-- Write-ahead log for epoch accumulation
-- WAL-to-SMT epoch pipeline
+- BLS12-381 signing with domain separation and PopVerifiedKey type-state enforcement
+- Sparse merkle tree library with two-level cumulative structure
+- Write-ahead log for epoch accumulation with crash recovery
+- WAL-to-SMT epoch pipeline for settlement processing
 - Validator capability bitmaps with ChaCha20 committee selection
 - Validator join/leave lifecycle with heartbeat liveness detection
-- Trigger definition registry with deduplication and monitor seed derivation
-- CLI for workflow deployment, triggering, and monitoring
+- Trigger definition registry with deduplication and monitor group assignment
+- Namespace model with hierarchical authority and payer inheritance
+- L1 settlement contracts (EpochSettlement, ValidatorSet, WorkflowRegistry, SMTVerifier)
+- BLS quorum-signed epoch submission pipeline
+- End-to-end integration test suite
 
-## What's Next
+Creatorland, W3.io's anchor client, is deployed on testnet as a live enterprise workflow.
 
-The remaining work is organized into merge points: short PR stacks (2-5 PRs each) that merge to master at defined points. Each merge point is a deployable, testable state.
+## Post-v1 Development
 
-**BOSCO message infrastructure.** Typed BOSCO message payloads (proposal, vote, decision, view change) and direct P2P transport for committee messaging. This is the gate for the consensus upgrades below.
+The following extension points are designed into v1 interfaces and will be developed after the settlement layer is in production.
 
-**BOSCO consensus integration.** Replace the current step runner selection and step attestation mechanisms with BOSCO consensus. This is the highest-value, highest-risk change: it moves the protocol from unanimous consensus (one offline validator blocks everything) to BFT (up to f offline validators tolerated).
+**VRF committee election.** Replace the deterministic ChaCha20-based committee selection with verifiable random function output. VRF provides cryptographic proof that the committee was selected correctly, removing the need to trust the seed derivation. Entry point: `ValidatorView::get_participants()`.
 
-**Trigger rewiring.** Monitor groups with BOSCO confirmation for trigger events. Rotation handoff between monitor group terms. Modified workflow initialization to receive confirmed triggers rather than running trigger consensus inline.
+**Decentralized governance.** Transition from Foundation-managed governance (Phase 1) through dual authorization (Phase 2) to fully on-chain staking governance (Phase 3). Remove privileged administrative roles. Entry point: governance contract deployment and role admin transfer.
 
-**Settlement wiring.** Manifest BOSCO for epoch close. BLS signing pipeline for quorum signatures. Proof tiers (settlement proof and execution proof). EVM submitter for L1 anchoring.
+**Data availability layer.** Integrate Storj or Celestia for long-term proof archival. Currently validators store all execution traces. A dedicated DA layer provides durability guarantees independent of validator set churn. Entry point: W3Uri resolver with remote storage backends.
 
-**L1 contracts.** EpochSettlement, ValidatorSet, WorkflowRegistry, SMTVerifier, and RewardPool Solidity contracts. Timelock and access control governance plumbing.
+**Namespace auth v2.** Per-workflow authorization policies and key-based auth beyond address-based control. Supports use cases where different workflows within the same namespace have different access rules. Entry point: `WorkflowRegistry.sol` auth functions.
 
-**Integration and UX.** End-to-end test suite (13 scenarios from trigger to L1 settlement). Explorer integration. CLI settlement commands and operational runbooks.
+**Validator capability proofs.** Replace self-declared capability bitmaps with proven capabilities. A validator proves it has an Ethereum WebSocket connection by signing a recent block hash. Entry point: `ValidatorView` capability filter with proof verification.
 
-## Post-v1
+**Zero-downtime protocol upgrades.** Epoch-activated feature flags that allow breaking changes (wire format, consensus parameters) to deploy without network downtime. Validators upgrade on their own schedule within a window. All nodes switch behavior at the same epoch boundary. Entry point: governance-set activation epoch with dual code paths.
 
-Nine extension points are designed into v1 interfaces but deferred to after the settlement layer ships. Each has a specific code location where future work begins:
+**Censorship dispute and slashing.** On-chain dispute mechanism where namespace owners can prove receipt censorship using signed namespace summaries. Slashing via signer bitmap attribution. Entry point: dispute contract consuming `GossipReceipt` and `NamespaceSummary` evidence.
 
-- VRF committee election (replacing deterministic ChaCha20 with verifiable randomness)
-- Decentralized governance (on-chain parameter control, removing Foundation admin roles)
-- DA layer integration (Storj, Celestia for long-term proof archival)
-- Namespace auth v2 (per-workflow policies, key-based auth beyond address-based)
-- Validator capability proofs (proven, not self-declared)
-- Censorship dispute and slashing enforcement
-- Zero-downtime breaking protocol upgrades (epoch-activated feature flags)
-
-These are not speculative features. They are interfaces and extension points designed into the v1 codebase with specific entry points documented in the implementation plan.
+**Firecracker execution backend.** MicroVM isolation for stronger step execution guarantees. Each step executes in its own lightweight VM with a dedicated kernel. Entry point: Backend trait implementation alongside Docker.

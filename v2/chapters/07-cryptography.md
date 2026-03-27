@@ -11,7 +11,7 @@ The following table summarizes the cryptographic primitives used in the protocol
 | Primitive | Purpose | Standard/Library | Used By |
 |-----------|---------|-----------------|---------|
 | BLS12-381 | Quorum signatures on epoch submissions, receipt signing, trigger confirmation, validator proof of possession | blst [@supranational2023blst], draft-irtf-cfrg-bls-signature [@irtf2022bls] | Ethereum 2.0 (Lighthouse, Prysm, Teku, Lodestar, Nimbus), Cosmos, Polkadot |
-| keccak256 | Receipt hashing, namespace ID derivation, SMT key derivation, ABI encoding | FIPS 202 [@fips202] | Ethereum (native hash function), Solidity `abi.encode` |
+| keccak256 | Receipt hashing, namespace ID derivation, SMT key derivation, ABI encoding | Keccak (pre-NIST, Ethereum variant) | Ethereum (native hash function), Solidity `abi.encode` |
 | ChaCha20 | Deterministic committee selection PRNG | RFC 8439 [@nir2018chacha20] | TLS 1.3, WireGuard, Linux kernel CSPRNG |
 | Ed25519 | Validator identity keys, P2P message signing | RFC 8032 | libp2p, Signal, SSH, Tor |
 | SHA-256 | Workflow run block hashchaining, trigger hash derivation | FIPS 180-4 | Bitcoin, TLS, nearly every production system |
@@ -43,7 +43,7 @@ W3.io enforces PoP at the type level. The `PopVerifiedKey` type can only be cons
 
 W3.io uses two hash functions for different layers of the protocol, with a clean boundary between them.
 
-**keccak256** is used for everything that touches the settlement layer or needs EVM compatibility: receipt hashing (`keccak256(abi.encode(receipt))`), namespace ID derivation (`keccak256(creator, nonce)`), SMT key derivation, and any value that will be verified by a Solidity contract. Keccak256 is Ethereum's native hash function. Using it for settlement means W3.io's proofs are directly verifiable by EVM contracts without hash function translation.
+**keccak256** is used for everything that touches the settlement layer or needs EVM compatibility: receipt hashing (`keccak256(abi.encode(receipt))`), namespace ID derivation (`keccak256(creator, nonce)`), SMT key derivation, and any value that will be verified by a Solidity contract. Keccak256 is Ethereum's native hash function [@buterin2014ethereum]. Note that Ethereum's keccak256 uses the original Keccak submission, not the NIST-standardized SHA3-256 (FIPS 202), which uses different padding. The two produce different outputs for the same input. W3.io uses the Ethereum variant for settlement compatibility.
 
 **SHA-256** is used for protocol internals that never cross the EVM boundary: workflow run block hashchaining, trigger hash derivation, and monitor group seed computation. SHA-256 is used in 17 files across 8 crates in the protocol codebase.
 

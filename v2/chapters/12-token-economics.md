@@ -19,30 +19,20 @@ Specific allocation percentages and token amounts are TBD and will be disclosed 
 
 At TGE, insider tokens (team, investors, advisors) will be fully locked. The only unlocked tokens at launch come from the Ecosystem and Community allocation.
 
-## Dual-Token Revenue Model
+## Dual-Token Model
 
-W3.io separates its token economy into two currencies with distinct roles.
+W3.io uses two currencies with distinct roles.
 
-**W3 token** is the utility and governance token. Used for staking, collateral, access control, and network contribution rewards. In the early network when revenue is low, rewards are denominated in W3 tokens funded by the protocol treasury.
+**W3 token** is the utility and governance token. Used for staking, collateral, access control, and compensation for active network roles. Participants who perform work for the network (executing steps, validating attestations, monitoring triggers, onboarding users) receive compensation denominated in W3 tokens during the early network phase.
 
-**USDC** is the payment currency. Workflow execution fees, partner revenue, and settlement costs are denominated and settled in USDC. As the network matures and generates real revenue, the reward mix shifts from W3 token emissions toward USDC revenue sharing.
+**USDC** is the payment currency. Workflow execution fees are denominated and settled in USDC, providing cost predictability for businesses using the protocol. As the network matures, governance may adjust the compensation structure for active participants to include USDC alongside or instead of W3 token compensation, subject to governance proposals and applicable regulatory review.
 
-All incentive types use the same hybrid formula:
+Compensation rates for active roles are governance-controlled parameters. They reflect the cost of the services provided (compute, bandwidth, availability commitment) and are subject to adjustment as the network's operational profile evolves. Compensation is paid only to participants actively performing their role. Holding the token without performing an active role does not generate any compensation.
 
-```
-reward = max(floor, percentage * revenue)
-```
+## Collateral Lifecycle
 
-Early network: the floor dominates, treasury subsidizes in W3 tokens. Mature network: the percentage dominates, self-sustaining from USDC fees. The crossover happens automatically as revenue grows past the floor. No governance action needed.
+Active participation in the network requires staked collateral. Tokens are locked for the duration of the participant's role and returned on clean exit (minus any penalties for validators who are slashed for provable misbehavior).
 
-The `rewardSplit` parameter (governance-controlled) governs the mix between W3 token and USDC rewards, adjustable as the network matures.
+When a partner exits the network and forfeits their remaining allocation, those tokens are redistributed to other active participants rather than returned to general circulation. This redistribution is a consequence of the partner agreement structure described in Section 11, not a separate mechanism. Its purpose is to maintain the collateral base of the network as participants change over time.
 
-## Scarcity Mechanics
-
-Circulating supply is structurally constrained by participation requirements.
-
-As the network grows, more partners require more staked collateral. More subnets mean more tokens locked. More validators mean more tokens bonded. The collateral requirements scale with network size, compounding demand without reliance on speculative interest.
-
-Forfeited stakes (from partners who exit or validators who are slashed) are redistributed to remaining participants, not released to the open market. This means tokens leave circulation permanently when participants exit, while remaining participants gain proportionally. The supply available for trading decreases as the network grows.
-
-These mechanics are structural. They are consequences of the participation model, not artificial scarcity mechanisms bolted on after the fact.
+The total supply is fixed at genesis. No minting occurs after the Token Generation Event. The Foundation Treasury allocation funds ecosystem development and is governed by the Foundation with transparency obligations described in Section 13.

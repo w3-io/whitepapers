@@ -4,9 +4,9 @@
 
 W3.io workflows execute off-chain. Validators run containers, reach consensus on results, and produce outputs. But without settlement, verifiability ends at the validator set. A third party who was not part of the consensus has no way to independently confirm that a workflow ran, what it produced, or when it executed.
 
-Settlement bridges this gap. It takes the outputs of off-chain consensus and anchors them to a public blockchain, creating a permanent, independently verifiable record. After settlement, anyone with access to the L1 can verify a workflow execution. No access to the validator network required. No trust in any specific validator.
+Settlement bridges this gap. It takes the outputs of off-chain consensus and anchors them to a public blockchain, creating a permanent record that anyone can check. After settlement, anyone with access to the L1 can confirm that a BFT quorum attested to a specific workflow result. No access to the validator network required. No trust in any individual validator.
 
-This is the difference between "the validators say it happened" and "the chain proves it happened."
+This is the difference between "the validators say it happened" and "the chain proves the validators agreed it happened." The settlement layer proves the attestation occurred and was signed by a quorum. It does not independently re-execute the computation (see Risk Factors, Section 14b, for the distinction between attested execution and computational integrity proofs).
 
 ## Receipts
 
@@ -41,7 +41,7 @@ Epoch mechanics:
 - Epochs are numbered sequentially. Empty epochs (no workflows ran) are skipped. The contract accepts the next non-empty epoch regardless of how many empty epochs elapsed.
 - Each epoch references the previous epoch's cumulative root, creating a hashchain of epochs on the L1. This prevents replay, reordering, and forking.
 - A receipt that arrives after the epoch closes goes into the next epoch. The cutoff is hard. There is no grace period. Late receipts are not lost, they are deferred.
-- The receipt manifest is agreed upon by the aggregation committee using BOSCO consensus (Section 5). This ensures all honest validators build the tree from the same receipt set.
+- The receipt manifest is agreed upon by the aggregation committee using BFT consensus (Section 5). This ensures all honest validators build the tree from the same receipt set.
 
 Batching into epochs serves two purposes. First, it amortizes the gas cost of L1 submission across many workflow executions. At 100 workflows per epoch, the per-workflow settlement cost approaches zero. Second, it produces a cumulative root that covers the full history of all settled workflows, not just the current epoch. This is what makes historical verification possible without scanning the entire chain.
 
@@ -69,7 +69,7 @@ This structure enables three types of verification:
 
 The final step in settlement is submitting the epoch commitment to the L1 contract. This is a two-phase process.
 
-**Phase 1: Manifest agreement.** The aggregation committee leader proposes the receipt manifest for the epoch. Committee members run BOSCO to reach consensus on which receipts are included. Once agreed, every honest member independently builds the same sparse merkle tree from the same receipts (deterministic: same receipts in the same order produce the same root).
+**Phase 1: Manifest agreement.** The aggregation committee leader proposes the receipt manifest for the epoch. Committee members run BFT consensus to reach consensus on which receipts are included. Once agreed, every honest member independently builds the same sparse merkle tree from the same receipts (deterministic: same receipts in the same order produce the same root).
 
 **Phase 2: Root signing.** After building the tree, committee members produce a quorum signature over the epoch tuple: chain ID, contract address, epoch number, validator set version, cumulative root, previous root, receipt count, and namespace count. The chain ID and contract address serve as a domain separator, preventing signatures from one deployment being replayed on another. The quorum signature is an aggregate BLS12-381 signature [@irtf2022bls] verified on-chain via EIP-2537 precompiles [@eip2537].
 
@@ -82,7 +82,7 @@ The `EpochSettlement` contract verifies:
 
 If all checks pass, the contract stores the new cumulative root, emits an `EpochSubmitted` event, and the epoch is settled. The cumulative root is now publicly queryable by any contract or off-chain verifier.
 
-**Submission incentives.** The manifest BOSCO leader has priority to submit during a configurable window (default 30 seconds). After the window expires, any validator can submit, incentivized by a gas reimbursement bounty. This ensures that a single faulty leader cannot block settlement. The contract's idempotent design means racing submitters are harmless: the first valid submission is accepted, duplicates revert cheaply.
+**Submission incentives.** The manifest consensus leader has priority to submit during a configurable window (default 30 seconds). After the window expires, any validator can submit, incentivized by a gas reimbursement bounty. This ensures that a single faulty leader cannot block settlement. The contract's idempotent design means racing submitters are harmless: the first valid submission is accepted, duplicates revert cheaply.
 
 ## Crash Recovery
 

@@ -12,9 +12,9 @@ The protocol's threat model considers several attack classes.
 
 **Faulty leader.** A leader that fails to propose, proposes invalid values, or equivocates (sends different proposals to different members). Defense: automatic view change rotates leadership after timeout. Equivocation is detectable because members share received proposals, and provable on-chain for slashing.
 
-**Network partition.** A subset of validators cannot communicate with the rest. Defense: BOSCO's liveness property requires only 2f+1 reachable members. A partition that isolates fewer than f+1 members does not prevent consensus. A larger partition stalls consensus until the partition heals, but does not produce incorrect results.
+**Network partition.** A subset of validators cannot communicate with the rest. Defense: the consensus protocol's liveness property requires only 2f+1 reachable members. A partition that isolates fewer than f+1 members does not prevent consensus. A larger partition stalls consensus until the partition heals, but does not produce incorrect results.
 
-**Trigger spoofing.** An attacker claims a blockchain event occurred when it did not. Defense: monitor groups (7 members, f=2) independently verify trigger evidence. A single validator's claim is not sufficient. The monitor group runs BOSCO to reach BFT agreement on the trigger before dispatching execution.
+**Trigger spoofing.** An attacker claims a blockchain event occurred when it did not. Defense: monitor groups (7 members, f=2) independently verify trigger evidence. A single validator's claim is not sufficient. The monitor group runs BFT consensus to reach agreement on the trigger before dispatching execution.
 
 **Bad epoch root.** An attacker attempts to submit a false epoch commitment to the L1 contract. Defense: epoch submission requires a BLS quorum signature from 2f+1 committee members over the epoch tuple (chain ID, contract address, epoch number, validator set version, cumulative root, previous root, receipt count, namespace count). A single Byzantine validator cannot produce a valid quorum signature.
 

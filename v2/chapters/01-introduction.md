@@ -38,7 +38,7 @@ The remainder of this paper describes the W3.io protocol in detail:
 - **Workflows** (Section 3): the declarative syntax, trigger types, step kinds, and expression evaluation
 - **Execution** (Section 4): how steps are isolated and executed on validators, with timeout enforcement and signal escalation
 - **Consensus** (Section 5): the BOSCO BFT protocol, committee selection, and the four contexts in which consensus is used
-- **Settlement** (Section 6): the cryptographic commitment structure that makes workflow execution independently verifiable
+- **Settlement** (Section 6): the cryptographic commitment structure that makes workflow attestations independently provable on-chain
 - **Cryptography** (Section 7): the specific algorithms used and their provenance in production-grade, audited implementations
 - **Namespaces** (Section 8): the hierarchical multi-tenancy model for organizing workflows, billing, and access control
 - **Validators** (Section 9): how operators join the network, declare capabilities, and maintain liveness

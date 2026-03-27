@@ -2,9 +2,11 @@
 
 ## BOSCO
 
-W3.io uses a single Byzantine fault-tolerant consensus algorithm called BOSCO [@song2008bosco] for all protocol-level agreement. BOSCO builds on the foundational work of practical BFT [@castro1999pbft] and tolerates up to f faulty or adversarial validators in a committee of 3f+1 members. In a 10-member committee, up to 3 members can be Byzantine (offline, malicious, or sending conflicting messages) and the protocol still reaches correct consensus.
+W3.io uses a single Byzantine fault-tolerant consensus algorithm for all protocol-level agreement. The protocol's consensus is inspired by BOSCO [@song2008bosco] (which demonstrated that BFT agreement can complete in a single communication step under favorable conditions) and builds on the foundational work of practical BFT [@castro1999pbft]. W3.io's implementation extends these ideas into a leader-based, view-change-capable protocol optimized for the per-step consensus pattern of workflow execution.
 
-BOSCO operates in three phases.
+The protocol tolerates up to f faulty or adversarial validators in a committee of 3f+1 members. In a 10-member committee, up to 3 members can be Byzantine (offline, malicious, or sending conflicting messages) and the protocol still reaches correct consensus.
+
+The consensus protocol operates in three phases.
 
 **Propose.** The committee leader constructs a proposal and broadcasts it to all committee members. The proposal contains the value being decided on (which validator should run a step, what the attestation set looks like, which receipts to include in an epoch) along with the leader's identity and a round number. The leader is selected deterministically from the committee using the round number, so all honest members agree on who the current leader is.
 
@@ -16,9 +18,9 @@ BOSCO operates in three phases.
 
 View changes are critical for liveness. Without them, a single offline or malicious leader could block all workflow execution indefinitely. With them, the worst case is a brief delay while leadership rotates. The protocol cycles through leaders until it finds one that responds.
 
-BOSCO is not a novel construction. It follows the established BFT pattern found in production systems across the blockchain industry [@castro1999pbft]. W3.io's implementation is 2,720 lines of Rust [@matsakis2014rust], battle-tested under multi-node deployments with injected Byzantine faults including equivocating leaders, message delays, and partitioned networks.
+The consensus protocol is not a novel construction. It follows the established BFT pattern found in production systems across the blockchain industry [@castro1999pbft], extended with ideas from BOSCO's one-step optimization for the common case where no faults or contention are present [@song2008bosco]. W3.io's implementation is 2,720 lines of Rust [@matsakis2014rust], tested under multi-node deployments with injected Byzantine faults including equivocating leaders, message delays, and partitioned networks.
 
-W3.io chose a single consensus algorithm rather than offering pluggable consensus per workflow. This is deliberate. Pluggable consensus adds complexity without proportional benefit. The security properties of the network depend on one well-tested algorithm, not a menu of options with varying guarantees. BOSCO is used everywhere consensus is needed. The contexts differ, but the mechanism is the same.
+W3.io chose a single consensus algorithm rather than offering pluggable consensus per workflow. This is deliberate. Pluggable consensus adds complexity without proportional benefit. The security properties of the network depend on one well-tested algorithm, not a menu of options with varying guarantees. The same consensus protocol is used everywhere agreement is needed. The contexts differ, but the mechanism is the same.
 
 ## The Workflow State Machine
 

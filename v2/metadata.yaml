@@ -16,8 +16,12 @@ linkcolor: blue
 urlcolor: blue
 header-includes:
   - \usepackage{fancyhdr}
+  - \usepackage{draftwatermark}
   - \pagestyle{fancy}
   - \fancyhead[L]{W3.io Protocol}
   - \fancyhead[R]{\thepage}
   - \linespread{1.3}
   - \setlength{\parskip}{0.5em}
+  - \SetWatermarkText{DRAFT}
+  - \SetWatermarkScale{1.5}
+  - \SetWatermarkColor[gray]{0.9}
