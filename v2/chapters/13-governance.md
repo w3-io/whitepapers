@@ -2,7 +2,7 @@
 
 ## Protocol Evolution
 
-W3.io employs an on-chain governance system in which token holders may submit and vote on Governance Improvement Proposals (GIPs). Governance covers protocol parameters, fee structures, staking reward rates, treasury allocations, new module integrations, and validator set policies.
+W3.io employs an on-chain governance system in which token holders may submit and vote on Governance Improvement Proposals (GIPs). Governance covers protocol parameters, fee structures, staking compensation rates, treasury allocations, new module integrations, and validator set policies.
 
 ## Proposal Process
 

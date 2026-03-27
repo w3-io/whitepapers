@@ -41,7 +41,7 @@ Actions are published as container images with a standard entry point. The W3.io
 
 The registry supports versioning. A workflow that references `w3-io/w3-sxt-action@v1` will always get the v1 interface, even after v2 is published. This prevents upstream action updates from breaking deployed workflows.
 
-Receipts record which actions were used in each workflow execution through the `actions_used` field. This creates a complete audit trail of partner capability consumption, enabling per-partner attribution for revenue distribution and analytics.
+Receipts record which actions were used in each workflow execution through the `actions_used` field. This creates a complete audit trail of partner capability consumption, enabling per-partner attribution for fee attribution and analytics.
 
 ## W3.cloud
 

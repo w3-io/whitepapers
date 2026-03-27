@@ -33,6 +33,6 @@ Compensation rates for active roles are governance-controlled parameters. They r
 
 Active participation in the network requires staked collateral. Tokens are locked for the duration of the participant's role and returned on clean exit (minus any penalties for validators who are slashed for provable misbehavior).
 
-When a partner exits the network and forfeits their remaining allocation, those tokens are redistributed to other active participants rather than returned to general circulation. This redistribution is a consequence of the partner agreement structure described in Section 11, not a separate mechanism. Its purpose is to maintain the collateral base of the network as participants change over time.
+When a partner exits the network and forfeits their remaining allocation, those tokens are redistributed to active participants as part of the network's collateral maintenance process. This redistribution is a consequence of the partner agreement structure described in Section 11.
 
 The total supply is fixed at genesis. No minting occurs after the Token Generation Event. The Foundation Treasury allocation funds ecosystem development and is governed by the Foundation with transparency obligations described in Section 13.

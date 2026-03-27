@@ -26,7 +26,7 @@ Staked tokens are locked for the duration of the participant's active role. The 
 
 If a participant decides to exit, the consequences depend on the role:
 
-- **Partners**: unstaking forfeits the remainder of the initial allocation. Forfeited tokens are redistributed to remaining participants, not released to the open market. This reinforces long-term commitment to the network.
+- **Partners**: unstaking forfeits the remainder of the initial allocation. Forfeited tokens are redistributed to active participants as part of the network's collateral maintenance process.
 - **Validators**: voluntary exit follows the drain process (complete in-flight work, then fully exit). Collateral is returned minus any slashing penalties. Force-exit due to liveness failure triggers tiered forfeiture: first offense forgiven (hardware failures happen), escalating with repeated force-exits.
 - **Builders and sales**: collateral returned on clean exit after any active commitments are fulfilled.
 
@@ -34,4 +34,4 @@ If a participant decides to exit, the consequences depend on the role:
 
 The W3 token does not represent equity, debt, or ownership rights in W3.io or any affiliated legal entity. It does not confer rights to protocol revenues, dividends, or other distributions. Holding the token does not entitle the holder to any payment or consideration beyond the protocol utilities described above.
 
-The token's design is focused on network participation and security, not on passive value appreciation. Demand for the token is driven by the collateral requirements of active participation roles, not by speculative interest.
+The token's design is focused on network participation and security. Active participation roles require token collateral. Holding the token without performing an active role does not generate any compensation or other benefit beyond governance voting rights.

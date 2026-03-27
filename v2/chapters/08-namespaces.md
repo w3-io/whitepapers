@@ -82,7 +82,7 @@ action_id = keccak256(namespace_id || action_name)
 
 This means the same action name in two different namespaces produces two different action IDs. A partner's `compliance-check` action in the `chainalysis` namespace is a different protocol object from a `compliance-check` action in a different namespace. There is no global action name collision.
 
-Workflow receipts include the `actions_used` field: a sorted list of action IDs for every action invoked during the run. This creates a per-execution record of which partner capabilities were consumed, enabling per-partner attribution for billing, analytics, and revenue distribution.
+Workflow receipts include the `actions_used` field: a sorted list of action IDs for every action invoked during the run. This creates a per-execution record of which partner capabilities were consumed, enabling per-partner fee attribution, billing, and analytics.
 
 W3.io reserves a protocol namespace for built-in actions (HTTP, blockchain primitives, core utilities). Only protocol governance can register actions in this namespace. Partner namespaces are self-governed by their authority.
 
