@@ -45,5 +45,3 @@ The whitepaper is written in Markdown with pandoc citation support. Each section
 ## Links
 
 - [W3.io](https://w3.io)
-- [Protocol Source Code](https://github.com/w3-io/protocol)
-- [Settlement Layer Specification](https://github.com/w3-io/protocol/tree/audie/settlement-spec-update/docs/settlement)
