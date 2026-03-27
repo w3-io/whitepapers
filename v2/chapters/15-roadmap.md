@@ -43,4 +43,6 @@ The following extension points are designed into v1 interfaces and will be devel
 
 **Censorship dispute and slashing.** On-chain dispute mechanism where namespace owners can prove receipt censorship using signed namespace summaries. Slashing via signer bitmap attribution. Entry point: dispute contract consuming `GossipReceipt` and `NamespaceSummary` evidence.
 
+**Field-level execution proofs and the `w3:` syscall.** Complete the proof path from on-chain epoch root to individual execution field values. The `w3:` step kind enables workflows to generate merkle proofs about their own consensus-attested execution data and submit those proofs to L1 contracts. This enables selective disclosure (prove which validator ran a step without revealing other fields) and on-chain composability (a DeFi contract gates an action on a specific field of a compliance workflow's result). Foundation: `w3io-proof` crate (PR #1507). Entry point: `w3:` runtime handler wired to real `ConsensusStepRun` data.
+
 **Firecracker execution backend.** MicroVM isolation for stronger step execution guarantees. Each step executes in its own lightweight VM with a dedicated kernel. Entry point: Backend trait implementation alongside Docker.

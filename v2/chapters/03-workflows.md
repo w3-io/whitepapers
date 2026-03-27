@@ -214,6 +214,37 @@ Each step in a workflow invokes one of five step kinds.
 
 **Bitcoin** (`bitcoin:`). Native blockchain operations on Bitcoin. Supports balance queries, UTXO management, fee estimation, and transaction construction.
 
+**W3** (`w3:`). Protocol-native operations where the workflow interacts with W3.io's own infrastructure. The first `w3:` operation is `prove-field`: the workflow generates a merkle inclusion proof for a specific field of its own consensus-attested step execution. This enables a compute-prove-settle pattern where a workflow executes a step, generates a cryptographic proof of a specific execution detail (which validator ran it, what the output was), and submits that proof to an L1 contract in a subsequent step.
+
+```yaml
+- name: Execute computation
+  id: compute
+  uses: w3-io/w3-hyperbolic-action@v1
+  with:
+    model: llama-3
+    prompt: "Analyze this transaction"
+
+- name: Prove who executed it
+  id: proof
+  w3:
+    prove-field:
+      index: 7  # runner field
+
+- name: Submit proof on-chain
+  ethereum:
+    action: call-contract
+    network: ethereum
+    params:
+      to: "0xVerifierContract"
+      function: "verifyExecution(bytes32,bytes32,bytes32[])"
+      args:
+        - ${{ steps.proof.outputs.root }}
+        - ${{ steps.proof.outputs.leaf }}
+        - ${{ steps.proof.outputs.branch }}
+```
+
+The field-level proof composes with W3.io's settlement proofs. The settlement layer proves that a step run is included in a settled epoch (epoch root to step-run root via SMT proof). The field proof goes one level deeper, proving a specific field value within that step run. Together they form a complete proof path from an on-chain epoch root to an individual piece of execution data.
+
 ## Expressions and Data Flow
 
 W3.io's expression engine evaluates dynamic values at runtime using the `${{ }}` syntax. Expressions can reference:
