@@ -1,6 +1,6 @@
 # Token Economics
 
-Token economic parameters are being finalized in coordination with legal counsel and are subject to change before the Token Generation Event. This section describes the structural design. Specific values (total supply, allocation percentages, vesting schedules, emission rates) will be published when finalized.
+Certain token economic parameters (total supply, allocation percentages, and emission rates) are being finalized in coordination with legal counsel and are subject to change before the Token Generation Event. The structural design and vesting schedules described below are committed. Specific allocation values will be published when finalized.
 
 ## Supply and Allocation
 

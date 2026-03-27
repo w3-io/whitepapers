@@ -22,7 +22,7 @@ The following table summarizes the cryptographic primitives used in the protocol
 
 W3.io uses BLS12-381 signatures for all protocol-level aggregate signing. BLS (Boneh-Lynn-Shacham) signatures have a unique property that makes them ideal for quorum-based systems: multiple individual signatures can be aggregated into a single signature of constant size, and the aggregate can be verified against the aggregate public key in a single operation. A quorum of 20 validators produces a signature no larger than one validator's signature.
 
-W3.io's BLS implementation wraps the `blst` library [@supranational2023blst], the same library used by every major Ethereum 2.0 consensus client. The protocol uses the min-pk scheme (public keys in G1, signatures in G2), matching Ethereum 2.0's choice. On-chain verification uses EIP-2537 precompiles [@eip2537] for gas-efficient pairing checks.
+W3.io's BLS implementation wraps the `blst` library [@supranational2023blst], the same library used by every major Ethereum 2.0 consensus client. The protocol uses the min-pk scheme (public keys in G1, signatures in G2), matching Ethereum 2.0's choice. On-chain verification uses EIP-2537 precompiles [@eip2537] for gas-efficient pairing checks. W3.io operates as a custom Avalanche L1 where the chain binary is under the protocol's control, and EIP-2537 precompiles are included in the custom chain configuration.
 
 Four domain separation tags (DSTs) prevent cross-context signature replay:
 

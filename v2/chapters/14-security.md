@@ -4,7 +4,7 @@
 
 W3.io's security model rests on the standard BFT assumption: fewer than one-third of the validators in any given committee are Byzantine. For a committee of size n, the protocol tolerates up to f = floor((n-1)/3) faulty members. This is a well-understood bound. No BFT protocol survives a 2/3+ adversary.
 
-Within this bound, the protocol guarantees safety (no two honest members reach conflicting decisions) and liveness (decisions are eventually reached, via view change if necessary). Beyond this bound, all bets are off. The protocol does not claim to defend against a supermajority adversary. No system can.
+The protocol assumes a partially synchronous network model: messages between honest validators are delivered within an unknown but finite bound. Under this model, the protocol guarantees safety (no two honest members reach conflicting decisions) and liveness (decisions are eventually reached, via view change if necessary). In a fully asynchronous network where messages can be delayed indefinitely, liveness cannot be guaranteed (by the FLP impossibility result), though safety is maintained. Beyond the f < n/3 bound, all bets are off. The protocol does not claim to defend against a supermajority adversary. No system can.
 
 ## Attack Scenarios
 

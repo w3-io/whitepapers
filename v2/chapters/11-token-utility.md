@@ -6,11 +6,11 @@ The W3 token gates participation in the network. Every participant role requires
 
 **Ecosystem partners** post collateral to operate a subnet. The subnet is the partner's position in the network: it grants access to W3.io's execution and settlement infrastructure, allows the partner to publish actions, and obligates the partner to distribute a portion of tokens to their community participants. Unstaking forfeits the remainder of the partner's allocation. This creates a strong disincentive to churn.
 
-**Solution builders** post collateral to deploy applications on the network. Builders earn revenue and token rewards based on the usage and demand their applications generate. The collateral requirement ensures that deployed applications have a committed maintainer.
+**Solution builders** post collateral to deploy applications on the network. Builders are compensated based on the usage and demand their applications generate. The collateral requirement ensures that deployed applications have a committed maintainer.
 
-**Sales teams** post collateral to earn rewards for driving adoption and end-user conversions. Sales participants are compensated based on measurable outcomes: users onboarded, workflows deployed, transaction volume generated. The collateral aligns sales incentives with long-term network health rather than short-term user acquisition.
+**Sales teams** post collateral to participate in adoption programs. Sales participants are compensated based on measurable outcomes: users onboarded, workflows deployed, transaction volume generated. The collateral aligns sales incentives with long-term network health rather than short-term user acquisition.
 
-**Validators** bond tokens to participate in consensus. Validator collateral is subject to slashing for provable misbehavior (equivocation, invalid signatures) and tiered forfeiture for repeated force-exits due to liveness failures. Validator rewards are based on active participation: signing epochs, executing steps, monitoring triggers.
+**Validators** bond tokens to participate in consensus. Validator collateral is subject to slashing for provable misbehavior (equivocation, invalid signatures) and tiered forfeiture for repeated force-exits due to liveness failures. Validator compensation is based on active participation: signing epochs, executing steps, monitoring triggers.
 
 ## Fee Structure
 
@@ -18,7 +18,7 @@ Revenue from workflow execution flows in stablecoins (USDC), not in the W3 token
 
 The W3 token is used for staking, governance, and access control. It is not the medium of exchange for workflow fees. This avoids the circular dependency where using the token for fees creates artificial demand that inflates the price, which increases costs for users, which reduces demand.
 
-Token holders who pay for W3.io services with the native token receive fee discounts, providing utility-driven demand without making the token the sole payment method.
+Token holders who pay for W3.io services with the native token receive fee discounts.
 
 ## Staking Mechanics
 
@@ -26,7 +26,7 @@ Staked tokens are locked for the duration of the participant's active role. The 
 
 If a participant decides to exit, the consequences depend on the role:
 
-- **Partners**: unstaking forfeits the remainder of the initial allocation. Forfeited tokens are redistributed to remaining participants, not released to the open market. This reinforces long-term commitment and rewards those who stay.
+- **Partners**: unstaking forfeits the remainder of the initial allocation. Forfeited tokens are redistributed to remaining participants, not released to the open market. This reinforces long-term commitment to the network.
 - **Validators**: voluntary exit follows the drain process (complete in-flight work, then fully exit). Collateral is returned minus any slashing penalties. Force-exit due to liveness failure triggers tiered forfeiture: first offense forgiven (hardware failures happen), escalating with repeated force-exits.
 - **Builders and sales**: collateral returned on clean exit after any active commitments are fulfilled.
 

@@ -6,13 +6,13 @@ W3.io is not a developer tool that sells directly to end users. It is infrastruc
 
 Approximately 20 network partners will operate at launch. Each partner operates a **subnet**: a staked position in the network that grants access to W3.io's execution and settlement infrastructure. Partners use this access to build solutions for their own markets, whether that is payments, compliance, data analytics, AI, or decentralized finance.
 
-Partners are not passive integrations. Each partner stakes W3 tokens to operate their subnet, is required to distribute a portion of their allocated tokens to their community participants, and earns rewards based on the activity their subnet generates. This creates aligned incentives: partners succeed when they drive real usage through the network, not when they hold tokens passively.
+Partners are not passive integrations. Each partner stakes W3 tokens to operate their subnet, is required to distribute a portion of their allocated tokens to their community participants, and is compensated for operating subnet infrastructure and delivering services to their community. This creates aligned incentives: partners succeed when they drive real usage through the network, not when they hold tokens passively.
 
 The community participants within each partner's subnet take on active roles:
 
-- **Sales teams** drive adoption by onboarding end users, earning revenue and token rewards based on successful conversions and usage growth
-- **Solution builders** develop full-scale applications on the network, earning revenue and token rewards based on usage and demand
-- **Guardian operators** maintain the integrity and security of the network, earning token rewards for ensuring decentralized verification and execution of workflow components
+- **Sales teams** drive adoption by onboarding end users, compensated based on measurable adoption outcomes
+- **Solution builders** develop full-scale applications on the network, compensated based on the usage their applications generate
+- **Validators** (also referred to as guardian operators) maintain the integrity and security of the network, compensated for consensus participation, step execution, and trigger monitoring (see Section 9)
 
 ## Named Partners
 
