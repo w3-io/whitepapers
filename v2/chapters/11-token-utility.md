@@ -6,11 +6,11 @@ The W3 token gates participation in the network. Every participant role requires
 
 **Ecosystem partners** post collateral to operate a subnet. The subnet is the partner's position in the network: it grants access to W3.io's execution and settlement infrastructure, allows the partner to publish actions, and obligates the partner to distribute a portion of tokens to their community participants. Unstaking forfeits the remainder of the partner's allocation. This creates a strong disincentive to churn.
 
-**Solution builders** post collateral to deploy applications on the network. Builders are compensated based on the usage and demand their applications generate. The collateral requirement ensures that deployed applications have a committed maintainer.
+**Solution builders** post collateral to deploy applications on the network. Builders deploy applications on the network. The collateral requirement ensures that deployed applications have a committed maintainer.
 
-**Sales teams** post collateral to participate in adoption programs. Sales participants are compensated based on measurable outcomes: users onboarded, workflows deployed, transaction volume generated. The collateral aligns sales incentives with long-term network health rather than short-term user acquisition.
+**Sales teams** post collateral to participate in adoption programs. Sales participants drive measurable outcomes: users onboarded, workflows deployed, transaction volume generated. The collateral aligns sales incentives with long-term network health rather than short-term user acquisition.
 
-**Validators** bond tokens to participate in consensus. Validator collateral is subject to slashing for provable misbehavior (equivocation, invalid signatures) and tiered forfeiture for repeated force-exits due to liveness failures. Validator compensation is based on active participation: signing epochs, executing steps, monitoring triggers.
+**Validators** bond tokens to participate in consensus. Validator collateral is subject to slashing for provable misbehavior (equivocation, invalid signatures) and tiered forfeiture for repeated force-exits due to liveness failures. Validators participate actively: signing epochs, executing steps, monitoring triggers.
 
 ## Fee Structure
 
@@ -32,4 +32,4 @@ If a participant decides to exit, the consequences depend on the role:
 
 The W3 token does not represent equity, debt, or ownership rights in W3.io or any affiliated legal entity. It does not confer rights to protocol revenues, dividends, or other distributions. Holding the token does not entitle the holder to any payment or consideration beyond the protocol utilities described above.
 
-The token's design is focused on network participation and security. Active participation roles require token collateral. Holding the token without performing an active role does not generate any compensation or other benefit.
+The token's design is focused on network participation and security. Active participation roles require token collateral. Holding the token without performing an active role does not generate any benefit.

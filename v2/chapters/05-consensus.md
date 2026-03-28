@@ -34,7 +34,7 @@ Once the trigger is confirmed, a workflow committee is selected from the active 
 
 If the leader fails to propose within the round timeout, view change rotates leadership. If the selected runner accepts but then fails to return a result within the step timeout, the committee marks the runner as failed and the leader proposes a new runner. After M consecutive runner failures for the same step (configurable, default 3), the workflow itself is marked as failed. This prevents infinite retry loops on steps that are fundamentally broken.
 
-**State 3: Awaiting Step Execution.** The selected runner executes the step using the execution backend (Section 4). This is the only phase where actual computation happens. The runner pulls the container image (if needed), injects the step's inputs and environment, runs the command, and captures the outputs.
+**State 3: Awaiting Step Execution.** The selected runner executes the step using the execution backend (Execution). This is the only phase where actual computation happens. The runner pulls the container image (if needed), injects the step's inputs and environment, runs the command, and captures the outputs.
 
 When execution completes, the runner broadcasts the result to the committee: the step's outputs, the execution duration, the exit code, and a hash of the produced workflow block. The workflow block contains the step's inputs, outputs, the runner's identity, and the previous block's hash, forming a per-run hashchain.
 
@@ -46,7 +46,7 @@ When execution completes, the runner broadcasts the result to the committee: the
 
 The committee runs BOSCO to agree on the canonical attestation set. A deterministic decision rule produces the final verdict from the agreed assessments. If the majority confirmed, the step passes and the state machine advances to State 2 for the next step. If the majority rejected, the step fails and the workflow's failure handling logic determines whether execution continues.
 
-When all steps complete, the workflow produces a receipt containing the trigger hash, the final state (completed or failed), timing data, the committee seed, the definition hash, the namespace, and the hashes of all consensus blocks. This receipt enters the settlement pipeline described in Section 6.
+When all steps complete, the workflow produces a receipt containing the trigger hash, the final state (completed or failed), timing data, the committee seed, the definition hash, the namespace, and the hashes of all consensus blocks. This receipt enters the settlement pipeline described in the Settlement section.
 
 ## Committee Selection
 
@@ -72,6 +72,6 @@ BOSCO is used in four distinct contexts within the protocol. The algorithm is id
 
 **Trigger confirmation.** Dedicated monitor groups run BOSCO to confirm external events before dispatching workflow execution. A monitor group is a small committee (7 members, f=2) assigned to a specific trigger type. Multiple workflows that watch the same event (for example, the same ERC-20 Transfer event on the same contract) share a single monitor group. This prevents trigger spoofing: a single validator claiming an event occurred is not sufficient to start a workflow. The monitor group must reach BFT agreement on the trigger evidence, including temporal validation that rejects future-dated events.
 
-**Epoch manifest agreement.** The aggregation committee uses BOSCO to agree on which workflow receipts are included in each settlement epoch. The aggregation committee is larger (30 members, f=9) and longer-lived (persists for an entire epoch term, not just one workflow run). The proposal value is the receipt manifest: a sorted list of receipt hashes. Once the manifest is agreed upon, every honest member independently builds the same sparse merkle tree from the same receipts, producing the same cumulative root. This root is then signed and submitted to the L1 contract (Section 6).
+**Epoch manifest agreement.** The aggregation committee uses BOSCO to agree on which workflow receipts are included in each settlement epoch. The aggregation committee is larger (30 members, f=9) and longer-lived (persists for an entire epoch term, not just one workflow run). The proposal value is the receipt manifest: a sorted list of receipt hashes. Once the manifest is agreed upon, every honest member independently builds the same sparse merkle tree from the same receipts, producing the same cumulative root. This root is then signed and submitted to the L1 contract (Settlement).
 
 In every context, the same properties hold: 2f+1 agreement is required, leader failure triggers automatic view change, and the decision is deterministic given the same inputs. W3.io does not need four consensus algorithms. It needs one good one, applied consistently.

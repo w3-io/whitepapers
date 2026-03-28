@@ -6,7 +6,7 @@ W3.io workflows execute off-chain. Validators run containers, reach consensus on
 
 Settlement bridges this gap. It takes the outputs of off-chain consensus and anchors them to a public blockchain, creating a permanent record that anyone can check. After settlement, anyone with access to the L1 can confirm that a BFT quorum attested to a specific workflow result. No access to the validator network required. No trust in any individual validator.
 
-This is the difference between "the validators say it happened" and "the chain proves the validators agreed it happened." The settlement layer proves the attestation occurred and was signed by a quorum. It does not independently re-execute the computation (see Risk Factors, Section 14b, for the distinction between attested execution and computational integrity proofs).
+This is the difference between "the validators say it happened" and "the chain proves the validators agreed it happened." The settlement layer proves the attestation occurred and was signed by a quorum. It does not independently re-execute the computation (see Risk Factors, the Risk Factors section, for the distinction between attested execution and computational integrity proofs).
 
 ## Receipts
 
@@ -41,7 +41,7 @@ Epoch mechanics:
 - Epochs are numbered sequentially. Empty epochs (no workflows ran) are skipped. The contract accepts the next non-empty epoch regardless of how many empty epochs elapsed.
 - Each epoch references the previous epoch's cumulative root, creating a hashchain of epochs on the L1. This prevents replay, reordering, and forking.
 - A receipt that arrives after the epoch closes goes into the next epoch. The cutoff is hard. There is no grace period. Late receipts are not lost, they are deferred.
-- The receipt manifest is agreed upon by the aggregation committee using BFT consensus (Section 5). This ensures all honest validators build the tree from the same receipt set.
+- The receipt manifest is agreed upon by the aggregation committee using BFT consensus (Consensus). This ensures all honest validators build the tree from the same receipt set.
 
 Batching into epochs serves two purposes. First, it amortizes the gas cost of L1 submission across many workflow executions. At 100 workflows per epoch, the per-workflow settlement cost approaches zero. Second, it produces a cumulative root that covers the full history of all settled workflows, not just the current epoch. This is what makes historical verification possible without scanning the entire chain.
 

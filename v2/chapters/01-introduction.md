@@ -34,16 +34,16 @@ This layered model means that ecosystem partners contribute capabilities once, d
 
 The remainder of this paper describes the W3.io protocol in detail:
 
-- **Architecture** (Section 2): system overview, data flow, and the relationship between protocol components
-- **Workflows** (Section 3): the declarative syntax, trigger types, step kinds, and expression evaluation
-- **Execution** (Section 4): how steps are isolated and executed on validators, with timeout enforcement and signal escalation
-- **Consensus** (Section 5): the BOSCO BFT protocol, committee selection, and the four contexts in which consensus is used
-- **Settlement** (Section 6): the cryptographic commitment structure that makes workflow attestations independently provable on-chain
-- **Cryptography** (Section 7): the specific algorithms used and their provenance in production-grade, audited implementations
-- **Namespaces** (Section 8): the hierarchical multi-tenancy model for organizing workflows, billing, and access control
-- **Validators** (Section 9): how operators join the network, declare capabilities, and maintain liveness
-- **Ecosystem** (Section 10): the B2B2C partner model and the action registry
-- **Token** (Sections 11-12): the utility of the W3 token within the protocol and its economic structure
-- **Security** (Section 14): the threat model, BFT assumptions, and known limitations
+- **Architecture**: system overview, data flow, and the relationship between protocol components
+- **Workflows**: the declarative syntax, trigger types, step kinds, and expression evaluation
+- **Execution**: how steps are isolated and executed on validators, with timeout enforcement and signal escalation
+- **Consensus**: the BFT protocol, committee selection, and the four contexts in which consensus is used
+- **Settlement**: the cryptographic commitment structure that makes workflow attestations independently provable on-chain
+- **Cryptography**: the specific algorithms used and their provenance in production-grade, audited implementations
+- **Namespaces**: the hierarchical multi-tenancy model for organizing workflows, billing, and access control
+- **Validators**: how operators join the network, declare capabilities, and maintain liveness
+- **Ecosystem**: the B2B2C partner model and the action registry
+- **Token**: the utility of the W3 token within the protocol and its economic structure
+- **Security**: the threat model, BFT assumptions, and known limitations
 
 W3.io's protocol is implemented in Rust [@matsakis2014rust], open-source, and deployed on testnet. This paper describes the system as designed and implemented, not as aspirational. Where features are planned but not yet deployed, this is stated explicitly.

@@ -6,13 +6,13 @@ W3.io is not a developer tool that sells directly to end users. It is infrastruc
 
 Approximately 20 network partners will operate at launch. Each partner operates a **subnet**: a staked position in the network that grants access to W3.io's execution and settlement infrastructure. Partners use this access to build solutions for their own markets, whether that is payments, compliance, data analytics, AI, or decentralized finance.
 
-Partners are not passive integrations. Each partner stakes W3 tokens to operate their subnet, is required to distribute a portion of their allocated tokens to their community participants, and is compensated for operating subnet infrastructure and delivering services to their community. This creates aligned incentives: partners succeed when they drive real usage through the network, not when they hold tokens passively.
+Partners are not passive integrations. Each partner stakes W3 tokens to operate their subnet, is required to distribute a portion of their allocated tokens to their community participants, and operates subnet infrastructure to deliver services to their community. This creates aligned incentives: partners succeed when they drive real usage through the network, not when they hold tokens passively.
 
 The community participants within each partner's subnet take on active roles:
 
-- **Sales teams** drive adoption by onboarding end users, compensated based on measurable adoption outcomes
-- **Solution builders** develop full-scale applications on the network, compensated based on the usage their applications generate
-- **Validators** (also referred to as guardian operators) maintain the integrity and security of the network, compensated for consensus participation, step execution, and trigger monitoring (see Section 9)
+- **Sales teams** drive adoption by onboarding end users, driving measurable adoption outcomes
+- **Solution builders** develop full-scale applications on the network, building applications that generate usage on the network
+- **Validators** (also referred to as guardian operators) maintain the integrity and security of the network, performing consensus participation, step execution, and trigger monitoring (see Section 9)
 
 ## Named Partners
 
@@ -37,7 +37,7 @@ Each partner's capabilities are exposed as **actions** within the W3.io protocol
 
 Actions are the protocol's unit of capability. The action registry tracks every published action, its owning namespace, its version history, and its interface specification.
 
-Actions are published as container images with a standard entry point. The W3.io runtime handles image pulling, environment setup, input injection, output parsing, and timeout enforcement (Section 4). Action authors only need to write the logic. The protocol handles the infrastructure.
+Actions are published as container images with a standard entry point. The W3.io runtime handles image pulling, environment setup, input injection, output parsing, and timeout enforcement (Execution). Action authors only need to write the logic. The protocol handles the infrastructure.
 
 The registry supports versioning. A workflow that references `w3-io/w3-sxt-action@v1` will always get the v1 interface, even after v2 is published. This prevents upstream action updates from breaking deployed workflows.
 

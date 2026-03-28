@@ -41,7 +41,7 @@ Validators have a lifecycle managed by the protocol's lifecycle manager.
 
 **Leaving voluntarily.** A validator signals intent to leave. It is immediately removed from future committee selections. However, it may still be part of in-flight workflow runs. The protocol drains active work: the validator completes any runs it is currently participating in, then fully exits. This prevents a departing validator from breaking consensus mid-workflow.
 
-**Force-exit.** If a validator becomes unresponsive, the heartbeat mechanism detects it and initiates a force-exit. The validator enters the leave queue as if it had signaled voluntarily, but with a forfeiture penalty on its staked collateral (see Section 11).
+**Force-exit.** If a validator becomes unresponsive, the heartbeat mechanism detects it and initiates a force-exit. The validator enters the leave queue as if it had signaled voluntarily, but with a forfeiture penalty on its staked collateral (see Token Utility).
 
 **Rejoining.** A validator that left can rejoin by going through the registration and sync process again. The force-exit counter is permanent per validator identity (Ed25519 key). A validator that force-exits repeatedly faces escalating penalties.
 
