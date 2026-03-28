@@ -31,7 +31,7 @@ The following extension points are designed into v1 interfaces and will be devel
 
 **VRF committee election.** Replace the deterministic ChaCha20-based committee selection with verifiable random function output. VRF provides cryptographic proof that the committee was selected correctly, removing the need to trust the seed derivation. Entry point: `ValidatorView::get_participants()`.
 
-**Decentralized governance.** Transition from Foundation-managed governance (Phase 1) through dual authorization (Phase 2) to fully on-chain staking governance (Phase 3). Remove privileged administrative roles. Entry point: governance contract deployment and role admin transfer.
+**Progressive decentralization.** Transition from Foundation-managed operations through dual authorization to fully on-chain staking mechanics. Remove privileged administrative roles over time. Entry point: role admin transfer.
 
 **Data availability layer.** Integrate Storj or Celestia for long-term proof archival. Currently validators store all execution traces. A dedicated DA layer provides durability guarantees independent of validator set churn. Entry point: W3Uri resolver with remote storage backends.
 
@@ -39,7 +39,7 @@ The following extension points are designed into v1 interfaces and will be devel
 
 **Validator capability proofs.** Replace self-declared capability bitmaps with proven capabilities. A validator proves it has an Ethereum WebSocket connection by signing a recent block hash. Entry point: `ValidatorView` capability filter with proof verification.
 
-**Zero-downtime protocol upgrades.** Epoch-activated feature flags that allow breaking changes (wire format, consensus parameters) to deploy without network downtime. Validators upgrade on their own schedule within a window. All nodes switch behavior at the same epoch boundary. Entry point: governance-set activation epoch with dual code paths.
+**Zero-downtime protocol upgrades.** Epoch-activated feature flags that allow breaking changes (wire format, consensus parameters) to deploy without network downtime. Validators upgrade on their own schedule within a window. All nodes switch behavior at the same epoch boundary. Entry point: protocol-set activation epoch with dual code paths.
 
 **Censorship dispute and slashing.** On-chain dispute mechanism where namespace owners can prove receipt censorship using signed namespace summaries. Slashing via signer bitmap attribution. Entry point: dispute contract consuming `GossipReceipt` and `NamespaceSummary` evidence.
 

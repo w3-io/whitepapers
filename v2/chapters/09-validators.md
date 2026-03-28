@@ -27,7 +27,7 @@ Each validator declares a capability bitmap at registration: a 64-bit value wher
 | 0 | `CORE_PROTOCOL` | Can run basic workflow steps |
 | 1 | `ETHEREUM_WS` | Maintains Ethereum WebSocket connection |
 | 2 | `AVALANCHE_WS` | Maintains Avalanche WebSocket connection |
-| 3-63 | Reserved | Future capabilities defined by governance |
+| 3-63 | Reserved | Future protocol-defined capabilities |
 
 When the committee selection algorithm runs for a workflow that monitors Ethereum events, it filters the validator set to only those with the `ETHEREUM_WS` bit set before shuffling. A validator without the required capability is never selected for work it cannot perform.
 
@@ -57,12 +57,4 @@ The heartbeat is the protocol's liveness detector. It does not assess whether a 
 
 ## Progressive Decentralization
 
-W3.io's validator governance follows a three-phase decentralization path.
-
-**Phase 1 (current): Foundation-managed.** The Foundation operates the KYC allowlist and holds administrative keys. A team multi-sig can add or remove validators, pause the contract, and initiate upgrades through a timelock. This is standard for early-stage blockchain projects and is explicitly disclosed, not hidden.
-
-**Phase 2: Dual authorization.** Administrative actions require both the Foundation multi-sig and a quorum co-signature from current validators. Neither party can act unilaterally. The Foundation provides institutional oversight. The validators provide decentralized checks.
-
-**Phase 3: On-chain staking governance.** The Foundation's administrative role is removed entirely. Validator set changes are governed by on-chain staking mechanics: meet the minimum stake, pass KYC, submit PoP, join the set. Removal requires governance proposals with supermajority approval from the validator community.
-
-The transition between phases is a one-way ratchet. Each phase reduces the Foundation's power. The contract's role admin is transferable, supporting this progression. The v1 trust model is an explicit, temporary compromise. The system should not require privileged roles long-term.
+W3.io is designed to progressively decentralize control over the validator set. At launch, the Foundation operates the KYC allowlist and holds administrative keys through a team multi-sig with timelock controls. Over time, the protocol transitions toward a model where validator set participation is determined by on-chain staking mechanics: meet the minimum stake, pass KYC, submit proof of possession, join the set. The contract architecture supports this transition through transferable role administration.

@@ -26,9 +26,9 @@ The protocol's threat model considers several attack classes.
 
 The permissioned validator model provides an additional security layer beyond the BFT assumptions. Every validator operator is KYC-verified, meaning attack attribution is possible. An attacker who equivocates or submits bad data is identifiable and legally accountable, not just slashable.
 
-The `emergencyRemove` function allows the Foundation to remove a compromised validator immediately without waiting for a governance vote. This is a centralized power that exists because the alternative (waiting for governance while a known bad actor participates in consensus) is worse. The power is scoped: it can only remove, not add. It is disclosed and tracked on-chain.
+The `emergencyRemove` function allows the Foundation to remove a compromised validator immediately without a vote. This is a centralized power that exists because the alternative (waiting while a known bad actor participates in consensus) is worse. The power is scoped: it can only remove, not add. It is disclosed and tracked on-chain.
 
-A known unmitigated attack: a compromised `EMERGENCY_ROLE` holder could iteratively call `emergencyRemove` to shrink the validator set until their own validators form a quorum. This is acknowledged. The mitigation is progressive decentralization: remove the privileged role entirely as the network matures. The v1 trust model is an explicit, temporary compromise documented in the governance roadmap (Section 13).
+A known unmitigated attack: a compromised `EMERGENCY_ROLE` holder could iteratively call `emergencyRemove` to shrink the validator set until their own validators form a quorum. This is acknowledged. The mitigation is progressive decentralization: remove the privileged role entirely as the network matures. The v1 trust model is an explicit, temporary compromise documented in the decentralization roadmap.
 
 ## Epoch Chain Integrity
 

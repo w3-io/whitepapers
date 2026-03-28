@@ -60,13 +60,13 @@ The seed feeds a ChaCha20 pseudorandom number generator [@nir2018chacha20], whic
 
 Before shuffling, the validator set is filtered by capabilities. Each validator declares a capability bitmap at registration: whether it maintains an Ethereum WebSocket connection, an Avalanche WebSocket connection, GPU compute access, or other resources. A workflow that triggers on Ethereum events requires validators with the Ethereum WebSocket capability. The shuffle operates only on validators whose capabilities satisfy the workflow's requirements, ensuring that selected committee members can actually perform the work.
 
-The minimum committee size in production is configurable through governance. Larger committees provide stronger Byzantine fault tolerance (more members must be compromised) but increase the P2P message overhead per step. The default minimum is 10, giving f=3 tolerance.
+The minimum committee size in production is configurable. Larger committees provide stronger Byzantine fault tolerance (more members must be compromised) but increase the P2P message overhead per step. The default minimum is 10, giving f=3 tolerance.
 
 ## Four Consensus Contexts
 
 BOSCO is used in four distinct contexts within the protocol. The algorithm is identical in each case. What differs is the proposal value, the committee composition, and the committee lifetime.
 
-**Step runner selection.** For each workflow step, the per-run committee agrees on which validator executes it. The proposal value is the selected runner's identity. This is the highest-stakes use of BOSCO because it directly determines who controls the step's execution. Committee size follows the governance-defined minimum (default 10 members, f=3). The committee is formed at trigger time and persists for the duration of the workflow run.
+**Step runner selection.** For each workflow step, the per-run committee agrees on which validator executes it. The proposal value is the selected runner's identity. This is the highest-stakes use of BOSCO because it directly determines who controls the step's execution. Committee size follows the configured minimum (default 10 members, f=3). The committee is formed at trigger time and persists for the duration of the workflow run.
 
 **Step attestation.** After execution, the same per-run committee agrees on the canonical assessment of the result. The proposal value is the attestation set (each member's confirmed/rejected/indeterminate verdict). This separates execution from evaluation: the runner produces the result, but the committee decides whether to accept it. A single compromised runner cannot force a bad result through consensus because the committee independently evaluates the output.
 

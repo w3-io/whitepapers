@@ -44,7 +44,6 @@ The remainder of this paper describes the W3.io protocol in detail:
 - **Validators** (Section 9): how operators join the network, declare capabilities, and maintain liveness
 - **Ecosystem** (Section 10): the B2B2C partner model and the action registry
 - **Token** (Sections 11-12): the utility of the W3 token within the protocol and its economic structure
-- **Governance** (Section 13): how the protocol evolves and the decentralization roadmap
 - **Security** (Section 14): the threat model, BFT assumptions, and known limitations
 
 W3.io's protocol is implemented in Rust [@matsakis2014rust], open-source, and deployed on testnet. This paper describes the system as designed and implemented, not as aspirational. Where features are planned but not yet deployed, this is stated explicitly.

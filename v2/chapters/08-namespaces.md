@@ -84,7 +84,7 @@ This means the same action name in two different namespaces produces two differe
 
 Workflow receipts include the `actions_used` field: a sorted list of action IDs for every action invoked during the run. This creates a per-execution record of which partner capabilities were consumed, enabling per-partner fee attribution, billing, and analytics.
 
-W3.io reserves a protocol namespace for built-in actions (HTTP, blockchain primitives, core utilities). Only protocol governance can register actions in this namespace. Partner namespaces are self-governed by their authority.
+W3.io reserves a protocol namespace for built-in actions (HTTP, blockchain primitives, core utilities). Only the protocol can register actions in this namespace. Partner namespaces are self-governed by their authority.
 
 ## Path to Chain-Native Namespaces
 

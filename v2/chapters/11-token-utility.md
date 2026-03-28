@@ -16,9 +16,7 @@ The W3 token gates participation in the network. Every participant role requires
 
 Revenue from workflow execution flows in stablecoins (USDC), not in the W3 token. This separation is fundamental to the economic design. Businesses need predictable costs. A workflow that costs $0.05 today should cost approximately $0.05 tomorrow, regardless of token price movements. Stablecoin-denominated fees provide this predictability.
 
-The W3 token is used for staking, governance, and access control. It is not the medium of exchange for workflow fees. This avoids the circular dependency where using the token for fees creates artificial demand that inflates the price, which increases costs for users, which reduces demand.
-
-Token holders who pay for W3.io services with the native token receive fee discounts.
+The W3 token is used for staking and access control. It is not the medium of exchange for workflow fees.
 
 ## Staking Mechanics
 
@@ -34,4 +32,4 @@ If a participant decides to exit, the consequences depend on the role:
 
 The W3 token does not represent equity, debt, or ownership rights in W3.io or any affiliated legal entity. It does not confer rights to protocol revenues, dividends, or other distributions. Holding the token does not entitle the holder to any payment or consideration beyond the protocol utilities described above.
 
-The token's design is focused on network participation and security. Active participation roles require token collateral. Holding the token without performing an active role does not generate any compensation or other benefit beyond governance voting rights.
+The token's design is focused on network participation and security. Active participation roles require token collateral. Holding the token without performing an active role does not generate any compensation or other benefit.
